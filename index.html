@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Yamaguchi.takumi — 写真 / works & exhibitions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light dark;
+    --paper:#ffffff;--ink:#000000;
+    --line:rgba(0,0,0,.1);--mute:rgba(0,0,0,.5);
+    --maxw:480px;--pad:22px;--navh:78px;
+    --jp:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#fff}
+  body{background:var(--paper);color:var(--ink);font-family:var(--jp);font-weight:400;line-height:1.74;letter-spacing:.01em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .mono{font-variant-numeric:tabular-nums;letter-spacing:.05em}
+
+  .frame-index{position:fixed;top:0;right:0;height:100%;width:var(--pad);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:30;writing-mode:vertical-rl}
+  .frame-index a{font-size:9.5px;color:var(--mute);letter-spacing:.18em;text-decoration:none;cursor:pointer;transition:color .2s}
+  .frame-index a:hover{color:var(--ink)}
+
+  header{position:fixed;top:0;left:0;width:100%;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+  .bar{max-width:var(--maxw);margin:0 auto;padding:11px var(--pad) 6px}
+  .logo{font-weight:700;font-size:15px;letter-spacing:.03em}
+  .topnav{max-width:var(--maxw);margin:0 auto;padding:2px var(--pad) 9px;display:flex;justify-content:space-between;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .topnav::-webkit-scrollbar{display:none}
+  .topnav a{flex:0 0 auto;font-size:11px;letter-spacing:.02em;color:var(--mute);text-decoration:none;padding:4px 0 5px;position:relative;text-transform:uppercase;cursor:pointer;transition:color .2s}
+  .topnav a.active{color:var(--ink)}
+  .topnav a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--ink)}
+
+  main{max-width:var(--maxw);margin:0 auto}
+  section{padding:62px var(--pad);border-bottom:1px solid var(--line);scroll-margin-top:var(--navh)}
+  .eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:10px;margin-bottom:26px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--ink)}
+
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) 52px;border-bottom:1px solid var(--line);overflow:hidden;scroll-margin-top:0}
+  #field{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .hero-inner{position:relative;z-index:2}
+  .hero .tag{font-size:10px;letter-spacing:.2em;color:var(--mute);text-transform:uppercase;margin-bottom:18px}
+  .hero h1{font-size:clamp(30px,8.2vw,48px);font-weight:700;line-height:1.04;letter-spacing:.004em;margin-bottom:18px;word-break:keep-all}
+  .hero h1 .jp{display:block;font-size:.42em;font-weight:500;letter-spacing:.04em;margin-top:16px}
+  .hero p{font-size:13.5px;color:rgba(0,0,0,.66);max-width:32ch;margin-bottom:26px}
+  .coords{font-size:9.5px;color:var(--mute);letter-spacing:.06em;display:flex;gap:16px;flex-wrap:wrap}
+  .scrollcue{position:absolute;right:var(--pad);bottom:18px;z-index:2;font-size:9px;letter-spacing:.22em;color:var(--mute)}
+  .tip{position:absolute;z-index:5;pointer-events:none;font-size:10px;letter-spacing:.03em;color:var(--ink);background:var(--paper);border:1px solid var(--ink);padding:5px 9px;white-space:nowrap;opacity:0;transition:opacity .15s;transform:translate(-50%,-135%)}
+  .tip.show{opacity:1}
+
+  .about p.lead{font-size:15px;line-height:1.95;margin-bottom:22px}
+  .about .bio{font-size:13px;color:rgba(0,0,0,.62);line-height:1.95}
+  .about .affil{font-size:11px;color:var(--mute);letter-spacing:.04em;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+
+  .ex{display:flex;gap:14px;padding:15px 0;border-top:1px solid var(--line)}
+  .ex:first-of-type{border-top:none}
+  .ex .yr{font-size:12px;font-weight:700;min-width:38px;letter-spacing:.03em}
+  .ex .body h4{font-size:15px;font-weight:500;margin-bottom:3px;line-height:1.4}
+  .ex .body .det{font-size:10px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ex .body .det .solo{color:var(--ink);border:1px solid var(--ink);padding:1px 6px;border-radius:2px;font-size:8.5px}
+  .ex .body .det .award{color:var(--ink);font-weight:700}
+  .subblock{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+  .subblock h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+  .subblock p{font-size:13px;margin-bottom:6px}
+  .subblock p .y{color:var(--mute);font-size:11px;margin-right:10px}
+
+  .piece{padding:34px 0;border-top:1px solid var(--line)}
+  .piece:first-of-type{border-top:none;padding-top:0}
+  .photo{position:relative;aspect-ratio:4/3;width:100%;overflow:hidden;background:linear-gradient(135deg,var(--g1,#ededed),var(--g2,#d4d4d4));margin-bottom:16px}
+  .photo span{position:absolute;left:10px;bottom:9px;font-size:8.5px;color:rgba(0,0,0,.4);letter-spacing:.06em}
+  .photo b{position:absolute;right:10px;top:9px;font-size:8.5px;color:rgba(0,0,0,.35);font-weight:400;letter-spacing:.06em}
+  .piece .meta{font-size:9.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:flex;gap:12px}
+  .piece h3{font-size:22px;font-weight:700;letter-spacing:.01em;margin-bottom:10px}
+  .piece .text{font-size:13px;color:rgba(0,0,0,.66);line-height:1.85}
+
+  .video-card{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid var(--line);text-decoration:none;color:inherit;margin-top:8px}
+  .video-card .play{flex:0 0 42px;height:42px;border:1px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .video-card .vt{font-size:14px;font-weight:500;margin-bottom:2px}
+  .video-card .vm{font-size:10px;color:var(--mute);letter-spacing:.06em}
+
+  .ig-account{margin-bottom:30px}
+  .ig-account:last-of-type{margin-bottom:0}
+  .ig-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .ig-name{font-size:14px;font-weight:500;letter-spacing:.02em}
+  .ig-head a{font-size:10px;color:var(--ink);text-decoration:none;letter-spacing:.08em;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .ig-cell{position:relative;aspect-ratio:1;overflow:hidden;background:#f4f4f4}
+  .ig-cell i{position:absolute;inset:0;background:linear-gradient(135deg,var(--c1),var(--c2))}
+  .ig-cell::after{content:attr(data-tag);position:absolute;left:7px;bottom:6px;font-size:8px;color:var(--lc);letter-spacing:.06em}
+  .ig-note{font-size:9.5px;color:var(--mute);margin-top:16px;letter-spacing:.04em}
+
+  .contact h2{font-size:25px;font-weight:700;line-height:1.25;margin-bottom:26px;letter-spacing:.02em}
+  .contact .clead{font-size:13px;color:rgba(0,0,0,.62);margin-bottom:24px;max-width:34ch}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:7px}
+  .field input,.field textarea{width:100%;border:none;border-bottom:1px solid var(--ink);background:none;font-family:inherit;font-size:15px;color:var(--ink);padding:6px 0;-webkit-appearance:none;border-radius:0}
+  .field input:focus,.field textarea:focus{outline:none;border-bottom-width:2px}
+  .field textarea{resize:none;min-height:80px}
+  .send{margin-top:8px;width:100%;padding:16px;background:var(--ink);color:var(--paper);border:none;font-family:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
+  .send:hover{opacity:.78}
+  .links{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.03em;line-height:2.2}
+  .links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .links .lbl{color:var(--mute);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;margin-right:10px}
+
+  footer{max-width:var(--maxw);margin:0 auto;padding:34px var(--pad) 48px}
+  footer .big{font-size:13px;color:var(--ink);font-weight:700;margin-bottom:14px;letter-spacing:.03em}
+  footer .row{display:flex;justify-content:space-between;align-items:center;font-size:9.5px;color:var(--mute);letter-spacing:.08em}
+
+  @media(prefers-color-scheme:dark){
+    :root{--paper:#000;--ink:#fff;--line:rgba(255,255,255,.16);--mute:rgba(255,255,255,.5)}
+    header{background:rgba(0,0,0,.9)}
+    .hero p,.about .bio,.piece .text,.contact .clead{color:rgba(255,255,255,.7)}
+    .ex .body .det .solo,.ex .body .det .award{color:var(--ink);border-color:var(--ink)}
+  }
+  @media(min-width:540px){:root{--pad:34px}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+  /* exhibition poster lightbox */
+  .ex{cursor:pointer;position:relative}
+  .ex .body{padding-right:22px}
+  .ex::after{content:"\ff0b";position:absolute;right:0;top:16px;font-size:13px;color:var(--mute);transition:color .2s}
+  .ex:hover::after{color:var(--ink)}
+  .lightbox{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.93);display:flex;align-items:center;justify-content:center;padding:54px 22px 40px;opacity:0;visibility:hidden;transition:opacity .3s}
+  .lightbox.open{opacity:1;visibility:visible}
+  .lb-close{position:absolute;top:16px;right:18px;width:40px;height:40px;border:1px solid rgba(255,255,255,.45);border-radius:50%;background:none;color:#fff;font-size:19px;line-height:1;cursor:pointer}
+  .lb-stage{max-width:440px;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .lb-media{width:100%}
+  .lb-media img{width:100%;height:auto;display:block;max-height:72vh;object-fit:contain}
+  .lb-media .ph{aspect-ratio:3/4;width:100%;background:linear-gradient(135deg,#2b2b2b,#171717);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px solid rgba(255,255,255,.15)}
+  .lb-media .ph b{font-size:11px;letter-spacing:.32em;color:rgba(255,255,255,.5);font-weight:400}
+  .lb-media .ph em{font-size:11px;color:rgba(255,255,255,.35);font-style:normal;letter-spacing:.04em}
+  .lb-cap{color:#fff;font-size:12px;letter-spacing:.04em;text-align:center;line-height:1.65}
+  .gallery{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+  .gallery img{width:100%;height:auto;display:block;cursor:pointer;background:rgba(127,127,127,.05)}
+  body.force-light{--paper:#ffffff;--ink:#000000;--line:rgba(0,0,0,.1);--mute:rgba(0,0,0,.5);color-scheme:light}
+  body.force-light header{background:rgba(255,255,255,.9)}
+  body{transition:background-color .35s ease,color .35s ease}
+</style>
+</head>
+<body>
+
+<div class="frame-index"><a class="mono" id="idxLink" data-go="top">TOP</a></div>
+
+<header>
+  <div class="bar"><div class="logo">Yamaguchi.takumi</div></div>
+  <nav class="topnav" id="topnav">
+    <a data-go="about">About</a>
+    <a data-go="works">Works</a>
+    <a data-go="exhibitions">Exhibitions</a>
+    <a data-go="instagram">Instagram</a>
+    <a data-go="contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <canvas id="field"></canvas>
+    <div class="tip" id="tip" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="tag mono">PHOTOGRAPHER — FUKUOKA</div>
+      <h1>Yamaguchi.takumi<span class="jp">山口 巧 — 写真</span></h1>
+      <p>九州の住宅街を歩き、「モノと距離」の関係と、日々の出来事の累積を写真に記録する。</p>
+      <div class="coords mono"><span>Fukuoka, Japan</span><span>LAT 33.5904</span><span>LNG 130.4017</span><span>JST +09:00</span></div>
+    </div>
+    <div class="scrollcue mono">SCROLL ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="eyebrow">プロフィール / About</div>
+    <p class="lead">山口 巧 / Takumi Yamaguchi</p>
+    <p class="bio">九州の住宅街をフィールドワークする中から発見した「モノと距離」の関係、自分自身の身の回りで起こる出来事、それらの累積。「写真」という画像を生成する意味を考察している。</p>
+    <div class="affil mono">九州産業大学大学院 芸術研究科 写真領域 大日方研究室</div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="eyebrow">写真作品 / Works</div>
+    <div class="piece">
+      <div class="gallery">
+        <img loading="lazy" src="images/works/record-01.jpg" alt="レコードしています、 01">
+        <img loading="lazy" src="images/works/record-02.jpg" alt="レコードしています、 02">
+        <img loading="lazy" src="images/works/record-03.jpg" alt="レコードしています、 03">
+        <img loading="lazy" src="images/works/record-04.jpg" alt="レコードしています、 04">
+        <img loading="lazy" src="images/works/record-05.jpg" alt="レコードしています、 05">
+      </div>
+      <div class="meta mono"><span>2016</span><span>モノクロスナップ・124点</span></div>
+      <h3>レコードしています、</h3>
+      <p class="text">'15年5月〜'16年2月にiPhoneで撮影した124点のモノクロスナップを撮影日順に並べ、撮影状況の詳細を記した配布資料を添えて、「日々の出来事と自身の存在」を記録／放出した作品。</p>
+    </div>
+    <div class="piece">
+      <div class="gallery">
+        <img loading="lazy" src="images/works/kisuiiki-01.jpg" alt="汽水域 01">
+        <img loading="lazy" src="images/works/kisuiiki-02.jpg" alt="汽水域 02">
+        <img loading="lazy" src="images/works/kisuiiki-03.jpg" alt="汽水域 03">
+        <img loading="lazy" src="images/works/kisuiiki-04.jpg" alt="汽水域 04">
+      </div>
+      <div class="meta mono"><span>2017</span><span>24点</span></div>
+      <h3>汽水域</h3>
+      <p class="text">追い越した人や立ち止まる人の「後ろ姿」と、並行して撮っていた「風景」を混ぜ、過ぎ去った人達の後に残った気配を辿る。感じた線にある風景が混在した状態で纏めた24点の作品。</p>
+    </div>
+    <div class="piece">
+      <div class="gallery">
+        <img loading="lazy" src="images/works/infield-01.jpg" alt="( in / Field ) 01">
+        <img loading="lazy" src="images/works/infield-02.jpg" alt="( in / Field ) 02">
+        <img loading="lazy" src="images/works/infield-03.jpg" alt="( in / Field ) 03">
+        <img loading="lazy" src="images/works/infield-04.jpg" alt="( in / Field ) 04">
+        <img loading="lazy" src="images/works/infield-05.jpg" alt="( in / Field ) 05">
+      </div>
+      <div class="meta mono"><span>2018</span><span>15点</span></div>
+      <h3>( in / Field )</h3>
+      <p class="text">草木や建物、設置物などが重なり合う少しズレた違和感を、展望台の望遠鏡で遠くを探すように、街を巡り／彷徨い／記録して纏めた15点の作品。</p>
+    </div>
+    <div class="piece">
+      <div class="gallery">
+        <img loading="lazy" src="images/works/unseen-01.jpg" alt="見えない／待つ 01">
+        <img loading="lazy" src="images/works/unseen-02.jpg" alt="見えない／待つ 02">
+        <img loading="lazy" src="images/works/unseen-03.jpg" alt="見えない／待つ 03">
+        <img loading="lazy" src="images/works/unseen-04.jpg" alt="見えない／待つ 04">
+        <img loading="lazy" src="images/works/unseen-05.jpg" alt="見えない／待つ 05">
+        <img loading="lazy" src="images/works/unseen-06.jpg" alt="見えない／待つ 06">
+        <img loading="lazy" src="images/works/unseen-07.jpg" alt="見えない／待つ 07">
+        <img loading="lazy" src="images/works/unseen-08.jpg" alt="見えない／待つ 08">
+        <img loading="lazy" src="images/works/unseen-09.jpg" alt="見えない／待つ 09">
+      </div>
+      <div class="meta mono"><span>2018</span><span>フィルム・9点</span></div>
+      <h3>見えない／待つ</h3>
+      <p class="text">突然起こった出来事は、その出来事が起こった時まで『待つ』行為を続けている。体験者ではない自分が、その先を想像しながら考える。見えているのに見えない場所を意識した9点のフィルム作品。</p>
+    </div>
+    <div class="piece">
+      <div class="meta mono" style="margin-bottom:12px"><span>2018</span><span>映像・8分43秒</span></div>
+      <h3 style="margin-bottom:14px">レコードしています、( -drive- )</h3>
+      <p class="text" style="margin-bottom:4px">「レコードしています、」の撮影前後を、iPhoneのキャプチャー機能で動画として記録した作品。</p>
+      <a class="video-card" href="https://youtu.be/4_RbUyJKD6U" target="_blank" rel="noopener">
+        <span class="play">▶</span>
+        <span><span class="vt">映像を見る</span><span class="vm mono">YOUTUBE · 8:43 ↗</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS -->
+  <section id="exhibitions">
+    <div class="eyebrow">展覧会の記録 / Exhibitions</div>
+    <div class="ex" data-poster="images/posters/2018-hansha.jpg"><div class="yr mono">2018</div><div class="body"><h4>反射した視選</h4><div class="det mono"><span>企画・出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2018-sairoku.jpg"><div class="yr mono">2018</div><div class="body"><h4>九州産業大学大学院 写真領域 作品展「採録」</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2018-fachuasu.jpg"><div class="yr mono">2018</div><div class="body"><h4>ふぁちゅあす☆めたまるふぉ〜ぜ</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2018-senpu.jpg"><div class="yr mono">2018</div><div class="body"><h4>旋風の囁き</h4><div class="det mono"><span class="solo">個展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2018-storage2.jpg"><div class="yr mono">2018</div><div class="body"><h4>storage2</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2018-overlap.jpg"><div class="yr mono">2018</div><div class="body"><h4>Overlap mapping 重なりあう地図</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2017-aupe.jpg"><div class="yr mono">2017</div><div class="body"><h4>AUPE</h4><div class="det mono"><span>出展</span><span>韓国</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2017-strage1.jpg"><div class="yr mono">2017</div><div class="body"><h4>strage1</h4><div class="det mono"><span>企画・出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2017-area.jpg"><div class="yr mono">2017</div><div class="body"><h4>AREA → APARTMENT</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2017-sotsuten.jpg"><div class="yr mono">2017</div><div class="body"><h4>九州産業大学大学院 卒業・修了制作展 2017</h4><div class="det mono"><span>出展</span><span class="award">優秀賞</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2017-silent.jpg"><div class="yr mono">2017</div><div class="body"><h4>SILENT</h4><div class="det mono"><span class="solo">個展</span><span>長崎</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2016-syuhen.jpg"><div class="yr mono">2016</div><div class="body"><h4>SYUHEN = AMBIENT</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2016-itozu.jpg"><div class="yr mono">2016</div><div class="body"><h4>到津の森 1938/2016</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2016-record.jpg"><div class="yr mono">2016</div><div class="body"><h4>レコードしています、</h4><div class="det mono"><span class="solo">個展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2016-shiranai.jpg"><div class="yr mono">2016</div><div class="body"><h4>知らない人たち</h4><div class="det mono"><span>企画・出展</span><span>福岡</span></div></div></div>
+    <div class="ex" data-poster="images/posters/2015-monochrome.jpg"><div class="yr mono">2015</div><div class="body"><h4>モノクロ展</h4><div class="det mono"><span>出展</span><span>福岡</span></div></div></div>
+    <div class="subblock"><h5>受賞 / Award</h5><p><span class="y mono">2017</span>九州産業大学大学院芸術研究科 卒業・修了制作展 優秀賞</p></div>
+    <div class="subblock"><h5>出版 / Publication</h5><p><span class="y mono">2018</span>Overlap mapping 展覧会図録</p></div>
+  </section>
+
+  <!-- INSTAGRAM (two accounts) -->
+  <section id="instagram">
+    <div class="eyebrow">記録 / Instagram</div>
+    <div class="ig-account">
+      <div class="ig-head"><span class="ig-name">@yesyamataku</span><a href="https://instagram.com/yesyamataku" target="_blank" rel="noopener" class="mono">VIEW ↗</a></div>
+      <div class="ig-grid" id="ig1"></div>
+    </div>
+    <div class="ig-account">
+      <div class="ig-head"><span class="ig-name">@stillyamataku</span><a href="https://instagram.com/stillyamataku" target="_blank" rel="noopener" class="mono">VIEW ↗</a></div>
+      <div class="ig-grid" id="ig2"></div>
+    </div>
+    <div class="ig-note mono">↑ ダミー表示。本番ではGraph API経由で2アカウントの最新投稿を自動取得します。</div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="eyebrow">連絡 / Contact</div>
+    <h2>展示・制作・仕事の<br>お問い合わせ</h2>
+    <form id="cform" onsubmit="return false">
+      <div class="field"><label for="n">お名前</label><input id="n" type="text" autocomplete="name" placeholder="山田 太郎"></div>
+      <div class="field"><label for="e">メールアドレス</label><input id="e" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <div class="field"><label for="m">ご用件</label><textarea id="m" placeholder="ご相談内容をお書きください"></textarea></div>
+      <button class="send" type="submit">送信する — SEND</button>
+    </form>
+    <div class="links mono">
+      <div><span class="lbl">X</span><a href="https://twitter.com/notyamataku" target="_blank" rel="noopener">@notyamataku ↗</a></div>
+      <div><span class="lbl">Mail</span><a href="mailto:yamaguchi.takumi@gmail.com">yamaguchi.takumi@gmail.com</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">Yamaguchi.takumi</div>
+    <div class="row mono"><span>PHOTOGRAPHER · FUKUOKA</span><span>© 2026</span></div>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lb" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="閉じる">×</button>
+  <div class="lb-stage">
+    <div class="lb-media" id="lbMedia"></div>
+    <div class="lb-cap mono" id="lbCap"></div>
+  </div>
+</div>
+
+
+<script>
+const pal=[['#efefef','#d8d8d8'],['#111','#444'],['#e6e6e6','#cccccc'],['#222','#555'],['#f0f0f0','#bcbcbc'],['#cfcfcf','#9a9a9a'],['#0a0a0a','#3a3a3a'],['#e8e8e8','#cdcdcd'],['#8a8a8a','#dcdcdc']];
+const dark=[1,0,1,0,1,1,0,1,0];
+function fillGrid(id,tags){
+  const grid=document.getElementById(id);
+  pal.forEach((c,i)=>{
+    const d=document.createElement('div');d.className='ig-cell mono';d.dataset.tag=tags[i];
+    d.style.setProperty('--c1',c[0]);d.style.setProperty('--c2',c[1]);
+    d.style.setProperty('--lc',dark[i]?'rgba(255,255,255,.92)':'rgba(0,0,0,.55)');
+    d.innerHTML='<i></i>';grid.appendChild(d);
+  });
+}
+fillGrid('ig1',['#rhizo','#3dprint','#object','#studio','#code','#line','#hand','#process','#one']);
+fillGrid('ig2',['#snap','#mono','#street','#film','#fukuoka','#walk','#frame','#light','#two']);
+
+const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+let lc='0,0,0';
+function updateInk(){const bg=getComputedStyle(document.body).backgroundColor.match(/\d+/g)||[255,255,255];const lum=(bg[0]*299+bg[1]*587+bg[2]*114)/1000;lc=lum<128?'255,255,255':'0,0,0';}
+updateInk();
+window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',updateInk);
+const cv=document.getElementById('field'),ctx=cv.getContext('2d');
+const exhibits=[{c:'FUKUOKA',s:'反射した視選'},{c:'FUKUOKA',s:'作品展「採録」'},{c:'FUKUOKA',s:'ふぁちゅあす☆めたまるふぉ〜ぜ'},{c:'FUKUOKA',s:'旋風の囁き（個展）'},{c:'FUKUOKA',s:'storage2'},{c:'FUKUOKA',s:'Overlap mapping'},{c:'KOREA',s:'AUPE'},{c:'FUKUOKA',s:'strage1'},{c:'NAGASAKI',s:'SILENT（個展）'},{c:'FUKUOKA',s:'レコードしています、（個展）'},{c:'FUKUOKA',s:'知らない人たち'},{c:'FUKUOKA',s:'モノクロ展'}];
+let W,H,pts=[],raf;
+function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio}
+function init(){size();const n=Math.min(46,Math.floor(W/26));pts=[];for(let i=0;i<n;i++){const lab=i<exhibits.length;pts.push({x:Math.random()*W,y:lab?(H*0.12+Math.random()*H*0.32):Math.random()*H,vx:(Math.random()-.5)*.18*devicePixelRatio,vy:(Math.random()-.5)*.18*devicePixelRatio,label:lab?exhibits[i].c:null,show:lab?exhibits[i].s:null})}}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.font=(7.5*devicePixelRatio)+'px "Hiragino Kaku Gothic ProN",sans-serif';
+  if('letterSpacing' in ctx)ctx.letterSpacing=(1.2*devicePixelRatio)+'px';
+  const t=performance.now()*0.001;
+  for(let i=0;i<pts.length;i++){
+    const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;const ym0=p.label?H*0.1:0,ym1=p.label?H*0.5:H;if(p.y<ym0||p.y>ym1)p.vy*=-1;
+    for(let j=i+1;j<pts.length;j++){
+      const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);
+      if(d<120*devicePixelRatio){
+        let pulse=1;
+        if(!reduce)pulse=Math.sin(t*0.65+(i*1.7+j*0.9));
+        if(pulse>0){
+          const a=(1-d/(120*devicePixelRatio))*.3*pulse;
+          ctx.strokeStyle='rgba('+lc+','+a+')';ctx.lineWidth=devicePixelRatio*.6;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+        }
+      }
+    }
+    ctx.fillStyle=(i%9===0)?'rgba('+lc+',.85)':'rgba('+lc+',.4)';
+    ctx.beginPath();ctx.arc(p.x,p.y,devicePixelRatio*1.3,0,7);ctx.fill();
+    if(p.label){ctx.fillStyle='rgba('+lc+',.2)';ctx.fillText(p.label,p.x+7*devicePixelRatio,p.y+3*devicePixelRatio)}
+  }
+  raf=requestAnimationFrame(draw);
+}
+init();draw();if(reduce)cancelAnimationFrame(raf);
+window.addEventListener('resize',()=>{cancelAnimationFrame(raf);init();draw();if(reduce)cancelAnimationFrame(raf)});
+
+const secs=[['top','TOP'],['about','ABOUT'],['works','WORKS'],['exhibitions','EXHIBITIONS'],['instagram','INSTAGRAM'],['contact','CONTACT']];
+const idxLink=document.getElementById('idxLink');
+const navlinks=[...document.querySelectorAll('.topnav a')];
+function updateIndex(){
+  const y=window.scrollY+120;
+  let cur=secs[0];
+  for(const s of secs){const el=document.getElementById(s[0]);if(el&&el.offsetTop<=y)cur=s;}
+  idxLink.textContent=cur[1];idxLink.dataset.go=cur[0];
+  navlinks.forEach(a=>a.classList.toggle('active',a.dataset.go===cur[0]));
+  document.body.classList.toggle('force-light',cur[0]==='works');
+}
+window.addEventListener('scroll',updateIndex,{passive:true});
+window.addEventListener('resize',updateIndex);
+updateIndex();
+
+/* exhibition poster lightbox */
+const lb=document.getElementById('lb'),lbMedia=document.getElementById('lbMedia'),lbCap=document.getElementById('lbCap');
+const PH='<div class="ph"><b>POSTER</b><em>画像は準備中です</em></div>';
+function openLb(poster,cap){
+  lbMedia.innerHTML='';
+  if(poster){const img=new Image();img.src=poster;img.alt=cap;img.onerror=function(){lbMedia.innerHTML=PH};lbMedia.appendChild(img);}
+  else{lbMedia.innerHTML=PH;}
+  lbCap.textContent=cap;
+  lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+}
+function closeLb(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.querySelectorAll('.ex').forEach(function(ex){
+  ex.addEventListener('click',function(){
+    var title=ex.querySelector('h4').textContent.trim();
+    var yr=ex.querySelector('.yr').textContent.trim();
+    var dets=[].slice.call(ex.querySelectorAll('.det span')).map(function(s){return s.textContent.trim()}).join(' ・ ');
+    openLb(ex.dataset.poster, yr+' ｜ '+title+(dets?' ｜ '+dets:''));
+  });
+});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+
+document.getElementById('cform').addEventListener('submit',()=>{alert('プロトタイプです。本番ではCloudflare Workerが受信し、D1に保存＋メール通知します。')});
+
+/* point hover/tap -> exhibition name tooltip */
+const tip=document.getElementById('tip');
+function findNear(cssX,cssY){
+  let best=null,bd=24;
+  for(const p of pts){
+    if(!p.label)continue;
+    const px=p.x/devicePixelRatio,py=p.y/devicePixelRatio;
+    const d=Math.hypot(px-cssX,py-cssY);
+    if(d<bd){bd=d;best=p;}
+  }
+  return best;
+}
+function showTip(p){tip.textContent=p.show;tip.style.left=(p.x/devicePixelRatio)+'px';tip.style.top=(p.y/devicePixelRatio)+'px';tip.classList.add('show');}
+cv.addEventListener('mousemove',e=>{
+  const r=cv.getBoundingClientRect();
+  const p=findNear(e.clientX-r.left,e.clientY-r.top);
+  if(p){showTip(p);cv.style.cursor='pointer';}else{tip.classList.remove('show');cv.style.cursor='default';}
+});
+cv.addEventListener('mouseleave',()=>tip.classList.remove('show'));
+cv.addEventListener('touchstart',e=>{
+  const r=cv.getBoundingClientRect(),t=e.touches[0];
+  const p=findNear(t.clientX-r.left,t.clientY-r.top);
+  if(p){showTip(p);clearTimeout(tip._t);tip._t=setTimeout(()=>tip.classList.remove('show'),2200);}
+},{passive:true});
+
+/* nav + index: smooth in-page scroll (no page jump) */
+document.querySelectorAll('.topnav a, #idxLink').forEach(a=>{
+  a.addEventListener('click',()=>{const el=document.getElementById(a.dataset.go);if(el)el.scrollIntoView({behavior:'smooth'});});
+});
+document.querySelectorAll('.gallery img').forEach(function(img){img.addEventListener('click',function(){openLb(img.src,img.alt)});});
+</script>
+</body>
+</html>
